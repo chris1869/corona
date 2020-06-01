@@ -1,0 +1,7 @@
+# Please uncomment and adjust lines for SIM_QUEUE and SIM_TABLE and copy .profile.tmp to .profile
+
+# Please add your custom AWS SQS queue URL here
+#SIM_QUEUE = https://sqs.{region}.amazonaws.com/{queue_id}/{queue_name}
+
+# Please add your custom dynamodb table here that should store the simulations' results
+#SIM_TABLE = XXXXX

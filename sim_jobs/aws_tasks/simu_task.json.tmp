@@ -1,0 +1,54 @@
+{
+  "executionRoleArn": "arn:aws:iam::${AWS_ACCOUNT_ID}:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": [],
+        "options": {
+          "awslogs-group": "/ecs/${TASK_FAMILY}",
+          "awslogs-region": "${AWS_REGION}",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "entryPoint": [],
+      "portMappings": [],
+      "command": [],
+      "linuxParameters": {},
+      "cpu": ${CPU_TICKS},
+      "environment": [
+        {
+          "name": "AWS_ACCESS_KEY_ID",
+          "value": "${AWS_ACCESS_KEY_ID}"
+        },
+        {
+          "name": "AWS_SECRET_ACCESS_KEY",
+          "value": "${AWS_SECRET_ACCESS_KEY}"
+        },
+        {
+          "name": "SIM_QUEUE",
+          "value": "${SIM_QUEUE}"
+        },
+        {
+          "name": "SIM_TABLE",
+          "value": "${SIM_TABLE}"
+        }
+      ],
+      "memory": ${MEM_HARD},
+      "memoryReservation": ${MEM_SOFT},
+      "image": "${AWS_IMG_NAME}",
+      "essential": true,
+      "name": "simu_contvv4"
+    }
+  ],
+  "placementConstraints": [],
+  "memory": "${MEM_MAX}",
+  "taskRoleArn": "arn:aws:iam::${AWS_ACCOUNT_ID}:role ecsTaskExecutionRole",
+  "family": "${TASK_FAMILY}",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "${CPU_TICKS}",
+  "volumes": []
+}

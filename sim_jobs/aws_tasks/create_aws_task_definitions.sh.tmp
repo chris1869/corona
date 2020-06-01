@@ -1,0 +1,21 @@
+#Please include the right values for XXX
+export AWS_ACCOUNT_ID=XXX
+export AWS_REGION=XXX
+
+export SIM_QUEUE=https://sqs.$AWS_REGION.amazonaws.com/$AWS_ACCOUNT_ID/XXX
+export SIM_TABLE=corona_simulation
+
+export IMAGE_NAME=XXX
+export IMAGE_VERSION=XXX
+export AWS_IMG_NAME=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_NAME}:${IMAGE_VERSION}
+
+export TASK_FAMILY=XXX
+export TASK_REVISION=XXX
+
+export CPU_TICKS=1024
+export MEM_MAX=2024
+export MEM_HARD=1800
+export MEM_SOFT=1500
+
+python patch_json_template.py "simu_task.json.tmp" "simu_task.json"
+#aws ecs register-task-definition --cli-input-json "file://simu_task.json"

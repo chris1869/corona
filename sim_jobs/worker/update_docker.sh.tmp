@@ -1,0 +1,16 @@
+#Update image name version and account_id and region
+IMAGE_NAME=XXX
+IMAGE_VERSION=XXX
+AWS_ACCOUNT_ID=XXX
+AWS_REGION=XXX
+
+sudo docker build -t $IMAGE_NAME:${IMAGE_VERSION} .
+sudo docker tag ${IMAGE_NAME}:${IMAGE_VERSION} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_NAME}:${IMAGE_VERSION}
+
+#If needed configure aws cli properly
+#aws configure 
+#If password has expired refresh password
+#aws ecr get-login-password
+
+sudo docker login https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
+sudo docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_NAME}:${IMAGE_VERSION}
